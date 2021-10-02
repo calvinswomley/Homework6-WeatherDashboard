@@ -1,0 +1,22 @@
+.row {
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: large;
+}
+
+header {
+    text-align: center;
+    padding: 4%;
+    background-color: lightskyblue;
+    font-size: 36px;
+    border: black;
+}
+
+.dayRow {
+    display: flex;
+    justify-content: space-around;
+}
+
+ul {
+    list-style-type: none;
+}
