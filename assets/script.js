@@ -11,7 +11,6 @@ var day3 = document.querySelector("#day3");
 var day4 = document.querySelector("#day4");
 var day5 = document.querySelector("#day5");
 
-
 // Display searchedHistory as buttons
 var searchHistory = document.querySelector("#searchHistory");
 
@@ -27,7 +26,7 @@ function displaySearchHistory () {
 
             var listButton = document.createElement("button");
             listButton.setAttribute("class", "addedButton");
-            listButton.setAttribute("data-attribute", searchX.value)
+            listButton.setAttribute("data-attribute", searchX.value);
             listButton.textContent = searchX;
             searchHistory.appendChild(listButton);
         };
@@ -35,7 +34,6 @@ function displaySearchHistory () {
         fetchData();
     };
 };
-
 
 // Store searched city in storage and as global variable
 function storeSearchedCity(event) {
@@ -46,12 +44,9 @@ function storeSearchedCity(event) {
         var cityInput = document.querySelector(".form-control");
         citySearched.citySearches.unshift(cityInput.value);
     } else {
-        //localStorage.setItem("storedCitySearched", JSON.stringify(citySearched));
         var cityInput = document.querySelector(".form-control");
         citySearched.citySearches.unshift(cityInput.value);
     }
-    
-    
     localStorage.setItem("storedCitySearched", JSON.stringify(citySearched));
     displaySearchHistory();
 }
@@ -64,8 +59,8 @@ function clearUi() {
 // Fetch Weather Data function
 function fetchData() {
 
-    var forecastQueryUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + storedCitySearched.citySearches[0] + "&units=imperial&appid=" + apiKey;
-    var currentQueryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + storedCitySearched.citySearches[0] + "&units=imperial&appid=" + apiKey;
+    var forecastQueryUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + storedCitySearched.citySearches[0] + "&units=imperial&appid=" + apiKey;
+    var currentQueryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + storedCitySearched.citySearches[0] + "&units=imperial&appid=" + apiKey;
 
     //Forecast weather fetch
     fetch(forecastQueryUrl)
@@ -91,7 +86,7 @@ function fetchData() {
                             var icon = document.createElement('img');
                             icon.setAttribute("class", "addedElement");
                             var iconCode = data.list[j].weather[0].icon;
-                            icon.setAttribute("src", "http://openweathermap.org/img/wn/" + iconCode + ".png");
+                            icon.setAttribute("src", "https://openweathermap.org/img/wn/" + iconCode + ".png");
                             cardArray[i].appendChild(icon);
                             //temp
                             var temp1 = document.createElement('li');
@@ -107,7 +102,7 @@ function fetchData() {
                             var humidity1 = document.createElement('li');
                             humidity1.setAttribute("class", "addedElement");
                             humidity1.textContent = "Humidity: " + data.list[j].main.humidity + "%";
-                            cardArray[i].appendChild(humidity1)
+                            cardArray[i].appendChild(humidity1);
                             i++;
                         };   
                     };            
@@ -157,17 +152,10 @@ var historicSearchButton = function (event) {
     if (cityButt) {
         console.log(cityButt);
     };
-
 };
 
 //Listener for clicking searched cities buttons
 $(document).on('click', '.addedButton', historicSearchButton);
 
-
-
-
 // Call "fetchWeatherData" when Search button is clicked
 document.getElementById('searchButton').addEventListener("click", storeSearchedCity);
-
-
-
